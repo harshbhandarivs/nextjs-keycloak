@@ -1,3 +1,6 @@
+### Blog
+Please go through this [blog](https://medium.com/@harshbhandariv/secure-nextjs-v13-application-with-keycloak-6f68406bb3b5)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
