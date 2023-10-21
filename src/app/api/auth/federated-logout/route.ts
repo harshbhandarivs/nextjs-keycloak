@@ -15,7 +15,7 @@ function handleEmptyToken() {
   return NextResponse.json(response, responseHeaders);
 }
 
-function buildEndSessionEndpointURL(token: JWT) {
+function redirectToEndSessionEndpointToURL(token: JWT) {
   const endSessionEndPoint = new URL(
     `${process.env.KEYCLOAK_ISSUER}/protocol/openid-connect/logout`
   );
@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
     if (validateCsrfToken) {
       const token = await getToken({ req })
       if (token) {
-        return buildEndSessionEndpointURL(token);
+        return redirectToEndSessionEndpointToURL(token);
       }
       return handleEmptyToken();
     }
