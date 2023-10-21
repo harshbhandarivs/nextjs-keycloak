@@ -10,6 +10,10 @@ export const authOptions: AuthOptions = {
       issuer: process.env.KEYCLOAK_ISSUER
     })
   ],
+  pages: {
+    signIn: '/auth/signin',
+    signOut: '/auth/signout',
+  },
   session: {
     strategy: "jwt",
     maxAge: 60 * 30
