@@ -1,4 +1,4 @@
-import { getCsrfToken, signOut } from "next-auth/react";
+import { signOut } from "next-auth/react";
 
 export default async function federatedLogout() {
   try {
