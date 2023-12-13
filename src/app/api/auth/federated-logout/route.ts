@@ -1,4 +1,3 @@
-import verifyCsrfToken from '@/utils/verifyCsrfToken'
 import { JWT, getToken } from 'next-auth/jwt'
 import { NextRequest, NextResponse } from 'next/server'
 
@@ -25,23 +24,13 @@ function redirectToEndSessionEndpointToURL(token: JWT) {
   return NextResponse.json(response);
 }
 
-function handleInvalidCSRFToken() {
-  const response = { error: "Invalid CSRF token" };
-  const responseHeaders = { status: 400 };
-  return NextResponse.json(response, responseHeaders);
-}
-
-export async function POST(req: NextRequest) {
+export async function GET(req: NextRequest) {
   try {
-    let validateCsrfToken = await verifyCsrfToken(req);
-    if (validateCsrfToken) {
-      const token = await getToken({ req })
-      if (token) {
-        return redirectToEndSessionEndpointToURL(token);
-      }
-      return handleEmptyToken();
+    const token = await getToken({ req })
+    if (token) {
+      return redirectToEndSessionEndpointToURL(token);
     }
-    return handleInvalidCSRFToken();
+    return handleEmptyToken();
   } catch (error) {
     console.error(error);
     const response = {

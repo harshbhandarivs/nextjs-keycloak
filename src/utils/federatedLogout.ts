@@ -2,11 +2,7 @@ import { getCsrfToken, signOut } from "next-auth/react";
 
 export default async function federatedLogout() {
   try {
-    const csrfToken = await getCsrfToken();
-    const rawBody = { csrfToken };
-    const body: BodyInit = JSON.stringify(rawBody);
-    const config: RequestInit = { method: "POST", body, cache: "no-store" };
-    const response = await fetch("/api/auth/federated-logout", config);
+    const response = await fetch("/api/auth/federated-logout");
     const data = await response.json();
     if (response.ok) {
       await signOut({ redirect: false });
